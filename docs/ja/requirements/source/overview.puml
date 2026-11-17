@@ -1,16 +1,25 @@
 @startuml overview
-title Overview of the area
+title Overview of collection
 skinparam shadowing false
 skinparam componentStyle rectangle
 
-actor "User" as user
-[Feature of the area] as feature
-database "Data" as data
+actor "Editor" as editor
+file "Settings (TOML)" as settings
+cloud "Source (arXiv)" as source
 
-user --> feature : uses
-feature --> data : reads and writes
+node "caraway" {
+  [Scheduler] as scheduler
+  [Collector] as collector
+  database "PostgreSQL" as db {
+    [Collection runs] as runs
+    [Documents (candidates)] as documents
+  }
+}
 
-legend right
-  Replace this example with the diagram of the area.
-endlegend
+editor --> settings : write sources and intervals
+settings --> scheduler : read
+scheduler --> runs : enqueue a run when the interval passes
+collector --> runs : take a run, record success or failure
+collector --> source : fetch bibliographic records,\nkeep the rules of the source
+collector --> documents : save new records as candidates,\none per identifier
 @enduml
