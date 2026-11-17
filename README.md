@@ -1,10 +1,8 @@
-# caraway
+# cardamap
 
 A site that collects papers, news, standards, and safety case documents on
 autonomous driving and physical AI, lets one editor pick what matters, and
 organizes how they relate by topic.
-
-`caraway` is a working name and may change.
 
 The project is at the requirements stage. There is no code yet.
 

@@ -1,10 +1,10 @@
-# caraway
+# cardamap
 
-caraway is a site for one editor. It collects bibliographic records of papers,
+cardamap is a site for one editor. It collects bibliographic records of papers,
 news, standards, and safety case documents on autonomous driving and physical
-AI, lets the editor accept or decline each candidate, and organizes the
+AI, screens them against the editor's topic definitions with an LLM, lets the editor accept or decline each candidate, and organizes the
 accepted documents by topic and by the relations between them. Readers come
-later. `caraway` is a working name and may change.
+later.
 
 ## Read first
 
@@ -37,7 +37,7 @@ and read every document that your task touches before you change code.
 ## How we work
 
 - Requirement first. Every behavior traces to a requirement such as
-  `CRW-SOURCE-003`. If no requirement covers a behavior, ask.
+  `CDM-SOURCE-003`. If no requirement covers a behavior, ask.
 - Test first. A requirement verified by `test` gets a test that proves it.
 - Verify external services (arXiv and other sources, Claude) in their official
   documentation before use, including their terms of use and rate limits, and
@@ -46,7 +46,7 @@ and read every document that your task touches before you change code.
 ## Code
 
 - Go, standard library first, and built-in PostgreSQL features first. Module
-  path: `github.com/cloveclovedev/caraway`.
+  path: `github.com/cloveclovedev/cardamap`.
 - Feature packages under `internal/<feature>/` with `domain.go`, `service.go`,
   `store.go`, and `handler.go`; shared provider-neutral code in
   `internal/core/`; shared provider-specific code in `internal/platform/`;

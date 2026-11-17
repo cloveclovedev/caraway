@@ -1,5 +1,5 @@
 # The settings of cumin-trace for the requirement documents of this repository
-prefix = "CRW"
+prefix = "CDM"
 
 # The allowed areas. Add an area here before you write its first requirement.
-areas = ["SOURCE"]
+areas = ["SOURCE", "SCREEN"]

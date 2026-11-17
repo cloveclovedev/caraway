@@ -14,7 +14,7 @@
 
 <!-- 要件は、見出し、本文、検証の行、区切り線の順に書く。書き方は書式の文書 (https://github.com/cloveclovedev/cumin-trace/blob/main/docs/ja/requirements/format/index.md) に従う。次の要件は記入例である。書き換えてから使う。 -->
 
-### `CRW-SOURCE-001` 記入例の要件
+### `CDM-SOURCE-001` 記入例の要件
 
 <!-- 何ができればよいかを、1つの要件に1つ書く。 -->
 

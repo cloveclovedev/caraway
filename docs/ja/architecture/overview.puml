@@ -3,7 +3,7 @@ title Package dependencies
 skinparam shadowing false
 skinparam componentStyle rectangle
 
-package "cmd/caraway" {
+package "cmd/cardamap" {
   [main.go\n(composition root)] as main
 }
 

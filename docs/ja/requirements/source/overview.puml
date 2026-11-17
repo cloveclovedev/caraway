@@ -7,19 +7,22 @@ actor "Editor" as editor
 file "Settings (TOML)" as settings
 cloud "Source (arXiv)" as source
 
-node "caraway" {
+node "cardamap" {
   [Scheduler] as scheduler
   [Collector] as collector
+  [Screening] as screening
   database "PostgreSQL" as db {
-    [Collection runs] as runs
-    [Documents (candidates)] as documents
+    [Collection runs and counts] as runs
+    [Documents] as documents
   }
 }
 
-editor --> settings : write sources and intervals
+editor --> settings : write sources, conditions,\nand intervals
 settings --> scheduler : read
 scheduler --> runs : enqueue a run when the interval passes
-collector --> runs : take a run, record success or failure
-collector --> source : fetch bibliographic records,\nkeep the rules of the source
-collector --> documents : save new records as candidates,\none per identifier
+collector --> runs : take a run, record counts,\nsuccess or failure
+collector --> source : fetch bibliographic records broadly,\nkeep the rules of the source
+collector --> documents : save new records,\none per identifier
+documents --> screening : new documents
+editor --> runs : read the counts
 @enduml
