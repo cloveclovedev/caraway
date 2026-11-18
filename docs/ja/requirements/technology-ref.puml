@@ -1,0 +1,34 @@
+@startuml technology-ref
+title Technology overview
+skinparam shadowing false
+skinparam componentStyle rectangle
+
+actor "Editor" as editor
+actor "Reader (from v0.4)" as reader
+
+cloud "External services" {
+  [Sources (arXiv and others)] as sources
+  [Claude API] as claude
+}
+
+node "Docker Compose" {
+  component "cardamap (Go)" as app {
+    [HTTP server\n(html/template, htmx)] as web
+    [Collection and\nscreening worker] as worker
+  }
+  database "PostgreSQL" as db {
+    [Documents, topics, relations] as tables
+    [Full-text search index] as fts
+    [Job queue table] as queue
+  }
+}
+
+editor --> web : decide, organize, read
+reader ..> web : read only
+web --> tables
+web --> fts : search
+worker --> queue : take jobs\n(FOR UPDATE SKIP LOCKED)
+worker --> sources : fetch bibliographic records
+worker --> tables : save documents,\nmark candidates
+worker --> claude : screen against\ntopic definitions
+@enduml

@@ -1,0 +1,42 @@
+@startuml overview-ref
+title Package dependencies
+skinparam shadowing false
+skinparam componentStyle rectangle
+
+package "cmd/cardamap" {
+  [main.go\n(composition root)] as main
+}
+
+package "internal/<feature>" {
+  [handler.go\n(inbound)] as handler
+  [service.go\n(application)] as service
+  interface "interfaces declared\nby the service" as ports
+  [domain.go\n(models and pure rules)] as domain
+  [store.go\n(data, SQL)] as store
+  [client of an external service] as client
+}
+
+package "internal/core" {
+  [config, postgres, web, clock] as core
+}
+
+database "PostgreSQL" as db
+cloud "External services" as ext
+
+main --> handler : builds and wires
+main --> service
+main --> store
+main --> client
+main --> core
+
+handler --> service
+service --> domain
+service --> ports
+store ..|> ports : implements
+client ..|> ports : implements
+store --> domain
+store --> core
+store --> db
+client --> ext
+handler --> core
+@enduml
