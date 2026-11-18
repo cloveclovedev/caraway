@@ -2,4 +2,4 @@
 prefix = "CDM"
 
 # The allowed areas. Add an area here before you write its first requirement.
-areas = ["SOURCE", "SCREEN"]
+areas = []

@@ -1,4 +1,4 @@
-@startuml technology
+@startuml technology-ref
 title Technology overview
 skinparam shadowing false
 skinparam componentStyle rectangle

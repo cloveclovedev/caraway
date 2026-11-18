@@ -1,4 +1,4 @@
-@startuml overview
+@startuml overview-ref
 title Package dependencies
 skinparam shadowing false
 skinparam componentStyle rectangle
